@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bate-papo</title>
+</head>
+<body>
+    <link rel="stylesheet" href="/styles.css">
+
+    <h1>Bate-papo</h1>
+    <h2>Mensagens</h2>
+    <ul>
+        <% mensagens.forEach(mensagem => { %>
+            <li>
+                <strong><%= mensagem.usuario %></strong> (<%= mensagem.dataHora %>): 
+                <%= mensagem.conteudo %>
+            </li>
+        <% }); %>
+    </ul>
+    <h2>Enviar nova mensagem</h2>
+    <form method="POST" action="/postarMensagem">
+        <label for="usuario">Usuário:</label>
+        <select id="usuario" name="usuario" required>
+            <option value="">Selecione</option>
+            <% usuarios.forEach(usuario => { %>
+                <option value="<%= usuario.nickname %>"><%= usuario.nickname %></option>
+            <% }); %>
+        </select>
+        <br>
+        <label for="conteudo">Mensagem:</label>
+        <textarea id="conteudo" name="conteudo" required></textarea>
+        <br>
+        <button type="submit">Enviar</button>
+    </form>
+    <a href="/menu">Voltar ao menu</a>
+</body>
+</html>
